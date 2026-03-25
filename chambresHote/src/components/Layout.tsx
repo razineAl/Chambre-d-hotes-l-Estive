@@ -115,8 +115,8 @@ export function Layout() {
               <ul className="space-y-2 text-sm">
                 <li>34 Chemin Chez Coudey - lieu dit plagnes</li>
                 <li>63690 Singles, France</li>
-                <li>Tél: +33 4 50 00 00 00</li>
-                <li>contact@lestive.fr</li>
+                <li>Tél: +33 6 63 81 55 10</li>
+                <li>chambresdhotesestive63@gmail.com</li>
               </ul>
             </div>
           </div>

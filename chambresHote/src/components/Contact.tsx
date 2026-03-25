@@ -127,7 +127,7 @@ export function Contact() {
               </div>
 
 
-              <div>
+              <div className='my-14'>
                 <label htmlFor="message" className="block text-sm font-medium text-stone-700 mb-2">
                   Message
                 </label>
@@ -176,7 +176,7 @@ export function Contact() {
                 </div>
                 <div>
                   <h3 className="font-medium text-stone-800 mb-1">Téléphone</h3>
-                  <p className="text-stone-600">+33 4 50 00 00 00</p>
+                  <p className="text-stone-600">+33 6 63 81 55 10</p>
                 </div>
               </div>
 
@@ -186,7 +186,7 @@ export function Contact() {
                 </div>
                 <div>
                   <h3 className="font-medium text-stone-800 mb-1">Email</h3>
-                  <p className="text-stone-600">contact@lestive.fr</p>
+                  <p className="text-stone-600">chambresdhotesestive63@gmail.com</p>
                 </div>
               </div>
 
@@ -197,30 +197,43 @@ export function Contact() {
                 <div>
                   <h3 className="font-medium text-stone-800 mb-1">Horaires</h3>
                   <p className="text-stone-600">
-                    Check-in: 15h00 - 19h00<br />
-                    Check-out: avant 11h00
+                    Check-in: 16h00 - 19h00<br />
+                    Check-out: avant 10h00<br/>
+                    Petit dej: 8h00 - 9h30<br />
+                    
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Map Placeholder */}
-            <div className="bg-stone-200 rounded-lg h-64 flex items-center justify-center">
-              <p className="text-stone-600">Carte interactive</p>
+            <div className="rounded-lg overflow-hidden h-64 shadow-lg">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.736391329875!2d2.5572482751376495!3d45.575739425991294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f77f7c6a22bdd9%3A0x6e9f363913fba8fd!2s34%20Chem.%20Chez%20Coudey%2C%2063690%20Singles!5e0!3m2!1sfr!2sfr!4v1774480063128!5m2!1sfr!2sfr" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true}
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Carte de localisation de L'Estive"
+              />
             </div>
 
-            <div className="mt-8 p-6 bg-emerald-50 rounded-lg">
+          </div>
+        </div>
+      </section>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mt-8 p-6 bg-emerald-50 rounded-lg">
               <h3 className="font-medium text-stone-800 mb-2">Bon à savoir</h3>
               <ul className="space-y-2 text-sm text-stone-600">
                 <li>• Arrivée tardive possible sur demande</li>
                 <li>• Parking gratuit sur place</li>
                 <li>• Piscine chauffée</li>
-                <li>• Animaux acceptés avec supplément</li>
-                <li>• Petit-déjeuner servi de 8h à 10h</li>
+                <li>• Chien accepté seulement dans la chambre épervière sans supplément</li>
+                <li>• Petit-déjeuner servi de 8h à 9h30</li>
               </ul>
             </div>
-          </div>
-        </div>
       </section>
     </div>
   );

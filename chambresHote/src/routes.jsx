@@ -13,8 +13,8 @@ export const router = createBrowserRouter([
     Component: Layout,
     children: [
       { index: true, Component: Home },
-      { path: "chambre-orchidee", Component: RoomMontagne },
-      { path: "chambre-eperviere", Component: RoomJardin },
+      { path: "chambre-orchidee", Component: RoomJardin },
+      { path: "chambre-eperviere", Component: RoomMontagne },
       { path: "chambre-gentiane", Component: RoomPrairie },
       { path: "contact", Component: Contact },
       { path: "*", Component: NotFound },

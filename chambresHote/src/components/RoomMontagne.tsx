@@ -6,8 +6,15 @@ import gentiane from "../assets/gentiane1.jpg";
 import pfp from "../assets/orchidee1_bis.jpg";
 import orchidee1 from "../assets/orchidee1.jpg";
 import orchidee2 from "../assets/orchidee2.jpg";
+import bain from "../assets/salleDeBain.jpg";
+import { ImageLightbox } from './ImageLightbox';
+import { useState } from 'react';
 
 export function RoomMontagne() {
+
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const features = [
     { icon: Users, label: '3 personnes' },
     { icon: Maximize, label: '25 m²' },
@@ -15,6 +22,34 @@ export function RoomMontagne() {
     { icon: Coffee, label: 'Coin café' },
     { icon: Waves, label: 'Accés piscine' },
     { icon: Sprout, label: 'Accés au jardin' },
+  ];
+
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const goToPrevious = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+  };
+
+  const galleryImages = [
+    {
+      src: orchidee1,
+      alt: 'Détail rustique'
+    },
+    {
+      src: orchidee2,
+      alt: 'Coin lecture'
+    }
   ];
 
   return (
@@ -29,7 +64,7 @@ export function RoomMontagne() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
           <div className="max-w-7xl mx-auto">
-            <h1 className="font-serif text-4xl md:text-6xl text-white mb-4">Chambre Orchidée</h1>
+            <h1 className="font-serif text-4xl md:text-6xl text-white mb-4">Chambre épervière</h1>
             <p className="text-xl text-stone-200">Vue panoramique sur les sommets alpins</p>
           </div>
         </div>
@@ -43,7 +78,7 @@ export function RoomMontagne() {
             <h2 className="text-3xl font-serif text-stone-800 mb-6">Une vue à couper le souffle</h2>
             <div className="prose prose-stone max-w-none">
               <p className="text-lg text-stone-700 leading-relaxed mb-4">
-                La Chambre Montagne vous offre une vue imprenable sur les sommets alpins depuis son
+                La Chambre épervière vous offre une vue imprenable sur les sommets alpins depuis son
                 balcon privé. Décorée avec élégance dans des tons naturels, elle allie confort
                 moderne et charme authentique.
               </p>
@@ -67,6 +102,16 @@ export function RoomMontagne() {
                 </div>
               ))}
             </div>
+            <div className="mt-8">
+                          <h3 className="text-xl font-serif text-stone-800 mb-4">Salle de bain</h3>
+                          <div className="rounded-lg overflow-hidden shadow-md">
+                            <ImageWithFallback
+                              src={bain}
+                              alt="Salle de bain Chambre Prairie"
+                              className="w-full object-cover"
+                            />
+                          </div>
+                        </div>
           </div>
 
           {/* Pricing & Booking */}
@@ -74,7 +119,7 @@ export function RoomMontagne() {
             <div className="bg-white border border-stone-200 rounded-lg p-8 shadow-lg">
               <div className="mb-6">
                 <div className="text-4xl font-serif text-stone-800 mb-2">75€</div>
-                <div className="text-stone-600">par nuit (2 personnes) et 15€ pour toute personne supplémentaire</div>
+                <div className="text-stone-600">par nuit (2 personnes) et 15€ de plus pour une personne supplémentaire</div>
               </div>
 
               <div className="space-y-4 mb-8">
@@ -116,25 +161,36 @@ export function RoomMontagne() {
         </div>
       </section>
 
+        {/* Gallery Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-              <h2 className="text-3xl font-serif text-stone-800 mb-8">Autres photos</h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="aspect-square overflow-hidden rounded-lg">
-                  <ImageWithFallback
-                    src={orchidee1}
-                    alt="Espace de travail"
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="aspect-square overflow-hidden rounded-lg">
-                  <ImageWithFallback
-                    src={orchidee2}
-                    alt="Lumière naturelle"
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-        </section>
+        <h2 className="text-3xl font-serif text-stone-800 mb-8">Autres photos</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {galleryImages.map((image, index) => (
+            <div 
+              key={index} 
+              className="aspect-square overflow-hidden rounded-lg cursor-pointer"
+              onClick={() => openLightbox(index)}
+            >
+              <ImageWithFallback
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <ImageLightbox
+          images={galleryImages}
+          currentIndex={currentImageIndex}
+          onClose={closeLightbox}
+          onPrevious={goToPrevious}
+          onNext={goToNext}
+        />
+      )}
 
       {/* Other Rooms */}
       <section className="bg-stone-100 py-16">
@@ -142,7 +198,7 @@ export function RoomMontagne() {
           <h2 className="text-3xl font-serif text-stone-800 mb-8">Nos autres chambres</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Link
-              to="/chambre-eperviere"
+              to="/chambre-orchidee"
               className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
             >
               <div className="aspect-[4/3] overflow-hidden">
@@ -153,7 +209,7 @@ export function RoomMontagne() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-serif text-stone-800 mb-2">Chambre épervière</h3>
+                <h3 className="text-2xl font-serif text-stone-800 mb-2">Chambre Orchidée</h3>
                 <p className="text-stone-600">Ambiance chaleureuse avec vue sur le jardin</p>
               </div>
             </Link>

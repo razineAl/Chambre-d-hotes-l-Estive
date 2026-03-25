@@ -9,8 +9,12 @@ import eperviere2 from '../assets/eperviere2.jpg'
 import eperviere3 from '../assets/eperviere4.jpg'
 import gentiane from '../assets/gentiane1.jpg'
 import orchidee from '../assets/orchidee1.jpg'
+import { ImageLightbox } from './ImageLightbox';
+import { useState } from 'react';
 
 export function RoomJardin() {
+      const [lightboxOpen, setLightboxOpen] = useState(false);
+      const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const features = [
     { icon: Users, label: '4 personnes' },
     { icon: Maximize, label: '22 m²' },
@@ -19,6 +23,42 @@ export function RoomJardin() {
     { icon: Bath, label: 'Salle de bain privée' },
     { icon: ShowerHead, label: 'Douche italienne' },
   ];
+
+  const openLightbox = (index: number) => {
+        setCurrentImageIndex(index);
+        setLightboxOpen(true);
+      };
+    
+      const closeLightbox = () => {
+        setLightboxOpen(false);
+      };
+    
+      const goToPrevious = () => {
+        setCurrentImageIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+      };
+    
+      const goToNext = () => {
+        setCurrentImageIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+      };
+    
+      const galleryImages = [
+        {
+          src: eperviere,
+          alt: 'Détail rustique'
+        },
+        {
+          src: eperviere2,
+          alt: 'Coin lecture'
+        },
+        {
+          src: eperviere3,
+          alt: 'Coin lecture'
+        },
+        {
+          src: bain2,
+          alt: 'salle de bain'
+        }
+      ];
 
   return (
     <div>
@@ -32,7 +72,7 @@ export function RoomJardin() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
           <div className="max-w-7xl mx-auto">
-            <h1 className="font-serif text-4xl md:text-6xl text-white mb-4">Chambre épervière</h1>
+            <h1 className="font-serif text-4xl md:text-6xl text-white mb-4">Chambre Orchidée</h1>
             <p className="text-xl text-stone-200">Ambiance chaleureuse avec vue sur le jardin</p>
           </div>
         </div>
@@ -46,7 +86,7 @@ export function RoomJardin() {
             <h2 className="text-3xl font-serif text-stone-800 mb-6">Un cocon de douceur</h2>
             <div className="prose prose-stone max-w-none">
               <p className="text-lg text-stone-700 leading-relaxed mb-4">
-                La Chambre épervière vous plonge dans une atmosphère chaleureuse et rustique. Avec ses
+                La Chambre orchidée vous plonge dans une atmosphère chaleureuse et rustique. Avec ses
                 poutres apparentes et sa décoration soignée, elle offre un cadre idéal pour se
                 ressourcer.
               </p>
@@ -88,7 +128,7 @@ export function RoomJardin() {
             <div className="bg-white border border-stone-200 rounded-lg p-8 shadow-lg">
               <div className="mb-6">
                 <div className="text-4xl font-serif text-stone-800 mb-2">75€</div>
-                <div className="text-stone-600">par nuit (2 personnes) et 15€ pour toute personne supplémentaire</div>
+                <div className="text-stone-600">par nuit (2 personnes) et 15€ pour toute personne supplémentaire (jusqu'à 2 personnes supplémentaires)</div>
               </div>
 
               <div className="space-y-4 mb-8">
@@ -130,39 +170,36 @@ export function RoomJardin() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-serif text-stone-800 mb-8">Autres photos</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="aspect-square overflow-hidden rounded-lg">
-            <ImageWithFallback
-              src={eperviere}
-              alt="Espace de travail"
-              className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-          <div className="aspect-square overflow-hidden rounded-lg">
-            <ImageWithFallback
-              src={eperviere3}
-              alt="Lumière naturelle"
-              className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-          <div className="aspect-square overflow-hidden rounded-lg">
-            <ImageWithFallback
-              src={bain2}
-              alt="Literie premium"
-              className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-          <div className="aspect-square overflow-hidden rounded-lg">
-            <ImageWithFallback
-              src={eperviere2}
-              alt="Machine Nespresso"
-              className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-        </div>
-      </section>
+      {/* Gallery Section */}
+                  <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <h2 className="text-3xl font-serif text-stone-800 mb-8">Autres photos</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {galleryImages.map((image, index) => (
+                        <div 
+                          key={index} 
+                          className="aspect-square overflow-hidden rounded-lg cursor-pointer"
+                          onClick={() => openLightbox(index)}
+                        >
+                          <ImageWithFallback
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+            
+                  {/* Lightbox */}
+                  {lightboxOpen && (
+                    <ImageLightbox
+                      images={galleryImages}
+                      currentIndex={currentImageIndex}
+                      onClose={closeLightbox}
+                      onPrevious={goToPrevious}
+                      onNext={goToNext}
+                    />
+                  )}
 
       {/* Other Rooms */}
       <section className="bg-stone-100 py-16">
@@ -187,18 +224,18 @@ export function RoomJardin() {
             </Link>
 
             <Link
-              to="/chambre-orchidee"
+              to="/chambre-eperviere"
               className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <ImageWithFallback
                   src={orchidee}
-                  alt="Chambre Orchidee"
+                  alt="Chambre eperviere"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-serif text-stone-800 mb-2">Chambre Orchidée</h3>
+                <h3 className="text-2xl font-serif text-stone-800 mb-2">Chambre épervière</h3>
                 <p className="text-stone-600">Vue directe sur le jardin</p>
               </div>
             </Link>

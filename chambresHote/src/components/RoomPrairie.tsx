@@ -8,8 +8,13 @@ import bain from "../assets/sb_gentiane2.jpg"
 import bain2 from "../assets/sb_gentiane.jpg"
 import gentiane from "../assets/gentiane1.jpg"
 import gentiane2 from "../assets/gentiane2.jpg"
+import { ImageLightbox } from './ImageLightbox';
+import { useState } from 'react';
 
 export function RoomPrairie() {
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const features = [
     { icon: Users, label: '2 personnes' },
     { icon: Maximize, label: '28 m²' },
@@ -18,6 +23,38 @@ export function RoomPrairie() {
     { icon: ShowerHead, label: 'Douche italienne' },
     { icon: Sparkles, label: 'Décoration design' },
   ];
+
+  const openLightbox = (index: number) => {
+      setCurrentImageIndex(index);
+      setLightboxOpen(true);
+    };
+  
+    const closeLightbox = () => {
+      setLightboxOpen(false);
+    };
+  
+    const goToPrevious = () => {
+      setCurrentImageIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+    };
+  
+    const goToNext = () => {
+      setCurrentImageIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+    };
+  
+    const galleryImages = [
+      {
+        src: gentiane,
+        alt: 'Détail rustique'
+      },
+      {
+        src: bain,
+        alt: 'Coin lecture'
+      },
+      {
+        src: gentiane2,
+        alt: 'Coin lecture'
+      }
+    ];
 
   return (
     <div>
@@ -87,7 +124,7 @@ export function RoomPrairie() {
             <div className="bg-white border border-stone-200 rounded-lg p-8 shadow-lg">
               <div className="mb-6">
                 <div className="text-4xl font-serif text-stone-800 mb-2">75€</div>
-                <div className="text-stone-600">par nuit (2 personnes) et 15€ pour toute personne supplémentaire</div>
+                <div className="text-stone-600">par nuit (2 personnes) </div>
               </div>
 
               <div className="space-y-4 mb-8">
@@ -129,32 +166,36 @@ export function RoomPrairie() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Gallery Section */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
               <h2 className="text-3xl font-serif text-stone-800 mb-8">Autres photos</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="aspect-square overflow-hidden rounded-lg">
-                  <ImageWithFallback
-                    src={gentiane}
-                    alt="Espace de travail"
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="aspect-square overflow-hidden rounded-lg">
-                  <ImageWithFallback
-                    src={bain2}
-                    alt="Lumière naturelle"
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="aspect-square overflow-hidden rounded-lg">
-                  <ImageWithFallback
-                    src={gentiane2}
-                    alt="Machine Nespresso"
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
+                {galleryImages.map((image, index) => (
+                  <div 
+                    key={index} 
+                    className="aspect-square overflow-hidden rounded-lg cursor-pointer"
+                    onClick={() => openLightbox(index)}
+                  >
+                    <ImageWithFallback
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
               </div>
-          </section>
+            </section>
+      
+            {/* Lightbox */}
+            {lightboxOpen && (
+              <ImageLightbox
+                images={galleryImages}
+                currentIndex={currentImageIndex}
+                onClose={closeLightbox}
+                onPrevious={goToPrevious}
+                onNext={goToNext}
+              />
+            )}
 
       {/* Other Rooms */}
       <section className="bg-stone-100 py-16">
@@ -167,7 +208,7 @@ export function RoomPrairie() {
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <ImageWithFallback
-                  src={eperviere}
+                  src={orchidee}
                   alt="Chambre eperviere"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -184,7 +225,7 @@ export function RoomPrairie() {
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <ImageWithFallback
-                  src={orchidee}
+                  src={eperviere}
                   alt="Chambre Orchidée"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />

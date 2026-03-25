@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Wifi, Coffee, ParkingSquare, Trees, Mountain, Heart, Waves } from 'lucide-react';
+import { Wifi, Coffee, ParkingSquare, Trees, Mountain, ChefHat, Waves, Utensils } from 'lucide-react';
 import piscine from '../assets/piscine.jpg';
 import maison from "../assets/maison.jpg";
 import maison2 from "../assets/maison2.jpg";
@@ -8,14 +8,15 @@ import principal from "../assets/principal.jpg";
 import eperviere from '../assets/eperviere3.jpg';
 import gentiane from '../assets/gentiane1.jpg';
 import orchidee from '../assets/orchidee1.jpg';
+import cuisine from '../assets/cuisine.jpg';
 
 export function Home() {
   const rooms = [
     {
-      name: 'Chambre épervière',
+      name: 'Chambre Orchidée',
       description: 'Vue panoramique sur les sommets alpins',
       image: eperviere,
-      path: '/chambre-eperviere',
+      path: '/chambre-orchidee',
     },
     {
       name: 'Chambre Gentiane',
@@ -24,10 +25,10 @@ export function Home() {
       path: '/chambre-gentiane',
     },
     {
-      name: 'Chambre Orchidée',
+      name: 'Chambre épervière',
       description: 'Design moderne au cœur de la nature',
       image:orchidee,
-      path: '/chambre-orchidee',
+      path: '/chambre-eperviere',
     },
   ];
 
@@ -38,7 +39,7 @@ export function Home() {
     { icon: Waves, label: 'Piscine chauffée' },
     { icon: Trees, label: 'Jardin' },
     { icon: Mountain, label: 'Vue montagne' },
-    { icon: Heart, label: 'Accueil chaleureux' },
+    { icon: Utensils, label: 'Cuisine équipée' },
   ];
 
   return (
@@ -79,45 +80,6 @@ export function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 className="font-serif text-4xl text-stone-800 text-center mb-12">Espaces Communs</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <div className="rounded-lg overflow-hidden shadow-xl h-full">
-              <ImageWithFallback
-                src={principal}
-                alt="Salon commun"
-                className="w-full h-full object-cover min-h-[400px]"
-              />
-            </div>
-          </div>
-          <div className="space-y-8">
-            <div className="rounded-lg overflow-hidden shadow-lg">
-              <ImageWithFallback
-                src={piscine}
-                alt="piscine"
-                className="w-full h-48 object-cover"
-              />
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-lg">
-              <ImageWithFallback
-                src={maison}
-                alt="jardin"
-                className="w-full h-48 object-cover"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="mt-12 px-4 mx-auto text-center">
-          <h3 className="text-2xl font-serif text-stone-800 mb-4">Des espaces pour se retrouver</h3>
-          <p className="text-lg text-stone-600 leading-relaxed">
-            Profitez de nos espaces communs chaleureux et élégants. Le grand salon avec cheminée, 
-            la piscine extérieure et le jardin sont à votre disposition 
-            pour partager des moments privilégiés. Ambiance montagnarde authentique et confort moderne 
-            se marient pour créer une atmosphère unique.
-          </p>
-        </div>
-      </section>
 
       {/* Rooms Section */}
       <section className="bg-white py-20">
@@ -209,6 +171,53 @@ export function Home() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Outdoor Kitchen Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="order-1">
+            <div className="rounded-lg overflow-hidden shadow-xl">
+              <ImageWithFallback
+                src={cuisine}
+                alt="Cuisine extérieure équipée"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="order-2">
+            <h2 className="font-serif text-4xl text-stone-800 mb-6">Espace petit déjeuner</h2>
+            <p className="text-lg text-stone-600 leading-relaxed mb-4">
+              Commencez vos journées en douceur dans notre espace petit-déjeuner dédié, 
+              niché au cœur du jardin avec une vue imprenable sur les montagnes. 
+              C'est l'endroit idéal pour savourer un café frais et un croissant croustillant 
+              tout en profitant des premiers rayons du soleil alpin.
+
+            </p>
+            <p className="text-lg text-stone-600 leading-relaxed mb-4"> 
+              Une table accueillante, entourée par la nature, vous invite à prendre le temps de vous 
+              réveiller paisiblement avant de partir à l'aventure. Que ce soit dans la fraîcheur matinale 
+              ou sous la douceur des premières heures, c'est l'endroit parfait pour faire le plein d'énergie 
+              en toute sérénité.
+
+            </p>
+            <ul className="space-y-2 text-stone-700">
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 mt-1">✓</span>
+                <span>Ustensiles et vaisselle fournis</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 mt-1">✓</span>
+                <span>Grande table conviviale</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-600 mt-1">✓</span>
+                <span>Vue panoramique sur les montagnes</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
