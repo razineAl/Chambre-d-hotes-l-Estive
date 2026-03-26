@@ -3,7 +3,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Users, Maximize, Wifi, Waves, ShowerHead, Sparkles } from 'lucide-react';
 import pfp from '../assets/gentiane2_bis.jpg';
 import eperviere from '../assets/eperviere1.jpg';
-import orchidee from '../assets/orchidee1.jpg';
+import orchidee from '../assets/orchidee2.jpg';
 import bain from "../assets/sb_gentiane2.jpg"
 import bain2 from "../assets/sb_gentiane.jpg"
 import gentiane from "../assets/gentiane1.jpg"

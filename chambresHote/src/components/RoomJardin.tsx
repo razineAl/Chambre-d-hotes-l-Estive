@@ -8,7 +8,7 @@ import eperviere from '../assets/eperviere1.jpg'
 import eperviere2 from '../assets/eperviere2.jpg'
 import eperviere3 from '../assets/eperviere4.jpg'
 import gentiane from '../assets/gentiane1.jpg'
-import orchidee from '../assets/orchidee1.jpg'
+import orchidee from '../assets/orchidee2.jpg'
 import { ImageLightbox } from './ImageLightbox';
 import { useState } from 'react';
 

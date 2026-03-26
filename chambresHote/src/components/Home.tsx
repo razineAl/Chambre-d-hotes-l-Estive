@@ -7,7 +7,7 @@ import maison2 from "../assets/maison2.jpg";
 import principal from "../assets/principal.jpg";
 import eperviere from '../assets/eperviere3.jpg';
 import gentiane from '../assets/gentiane1.jpg';
-import orchidee from '../assets/orchidee1.jpg';
+import orchidee from '../assets/orchidee2.jpg';
 import cuisine from '../assets/cuisine.jpg';
 
 export function Home() {
@@ -47,7 +47,7 @@ export function Home() {
       {/* Hero Section */}
       <section className="relative h-[600px] overflow-hidden">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1638893054175-a5b0bf5837dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGxhbmRzY2FwZSUyMGFscGluZXxlbnwxfHx8fDE3NzE3NzAyMjN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          src={maison}
           alt="Paysage montagnard"
           className="w-full h-full object-cover"
         />
@@ -55,7 +55,7 @@ export function Home() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4">
             <h1 className="font-serif text-5xl md:text-7xl mb-4">Chambres d'Hôtes L'Estive</h1>
-            <p className="text-xl md:text-2xl mb-8 text-stone-200">
+            <p className="text-xl md:text-2xl mb-8 text-white">
               Un havre de paix au cœur des montagnes
             </p>
             <Link
