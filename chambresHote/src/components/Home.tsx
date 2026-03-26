@@ -5,7 +5,7 @@ import piscine from '../assets/piscine.jpg';
 import maison from "../assets/maison.jpg";
 import maison2 from "../assets/maison2.jpg";
 import principal from "../assets/principal.jpg";
-import eperviere from '../assets/eperviere3.jpg';
+import eperviere from '../assets/orchidee7.jpg';
 import gentiane from '../assets/gentiane1.jpg';
 import orchidee from '../assets/orchidee2.jpg';
 import cuisine from '../assets/cuisine.jpg';

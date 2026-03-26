@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Users, Maximize, Wifi, Coffee, Tv, Waves, Sprout } from 'lucide-react';
-import eperviere from "../assets/eperviere3.jpg";
+import { Users, Maximize, Wifi, Coffee, Waves, Sprout } from 'lucide-react';
+import eperviere from "../assets/orchidee7.jpg";
 import gentiane from "../assets/gentiane1.jpg";
 import pfp from "../assets/orchidee1_bis.jpg";
 import orchidee1 from "../assets/orchidee1.jpg";
